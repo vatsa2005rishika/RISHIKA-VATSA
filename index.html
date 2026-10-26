@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rishika Vatsa | Full-Stack Developer, Software & Machine Learning</title>
+<title>Rishika Vatsa | Software Developer & Machine Learning</title>
 <meta name="description" content="Portfolio of Rishika Vatsa, Computer Science undergraduate and full-stack developer interested in software development, machine learning, APIs and intelligent applications.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -161,6 +161,9 @@ button.mail-card{width:100%;font:inherit;text-align:left;background:transparent;
 .timeline .certs li{display:flex;flex-wrap:wrap;gap:4px 14px;border:0;padding:0 0 10px;border-bottom:1px solid var(--line);grid-template-columns:none}
 .certs span{font-weight:500;font-size:1rem}
 .certs em{font-style:normal;color:var(--mute);font-size:.9rem}
+.cert-link{margin-left:auto;align-self:center;font:500 .8rem var(--f-d);padding:4px 14px;border:1px solid var(--ink);border-radius:99px;background:none;color:var(--ink);text-decoration:none;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.cert-link:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+#credDlg{width:min(760px,94vw)}
 
 /* v5: colour bands, custom cursor */
 .proj:nth-child(1){--c:#2338E8;--fg:#fff;--row:#DFE5FF}
@@ -310,10 +313,10 @@ html.has-cursor dialog,html.has-cursor dialog *{cursor:auto!important}html.has-c
     <li><time>2025</time><div><h3>Smart India Hackathon 2025</h3><p>Contributed in a 6-member team to a civic issue reporting prototype, implementing the FastAPI backend with about 10 REST endpoints.</p></div></li>
     <li><time>2023 – 2027</time><div><h3>B.Tech, Computer Science &amp; Engineering, Adamas University</h3><p>CGPA 8.81/10 through Semester 6. Class XII (CBSE) 73.66%, Class X (CBSE) 93.88%, DAV Public School, Raniganj.</p></div></li>
     <li><time>Certifications</time><div><ul class="certs">
-      <li><span>NPTEL Java Programming</span><em>88%, top 5% of certified candidates nationally</em></li>
-      <li><span>Tata Group Data Analytics Job Simulation</span><em>Forage</em></li>
-      <li><span>Deloitte Australia Technology Job Simulation</span><em>Forage, Aug 2025</em></li>
-      <li><span>HackerRank</span><em>5-star C++ badge</em></li>
+      <li><span>NPTEL Java Programming</span><em>88%, top 5% of certified candidates nationally</em><button type="button" class="cert-link" data-src="assets/nptel-java.jpeg" data-cap="NPTEL Programming in Java, Jan–Apr 2025">View certificate</button></li>
+      <li><span>Tata GenAI Powered Data Analytics Job Simulation</span><em>Forage, Jul 2025</em><button type="button" class="cert-link" data-src="assets/forage-tata-genai.jpeg" data-cap="Tata GenAI Powered Data Analytics Job Simulation, Forage, 15 July 2025">View certificate</button></li>
+      <li><span>Deloitte Australia Technology Job Simulation</span><em>Forage, Jun 2025</em><button type="button" class="cert-link" data-src="assets/deloitte-technology.jpeg" data-cap="Deloitte Technology Job Simulation, Forage, 9 June 2025">View certificate</button></li>
+      <li><span>HackerRank</span><em>5-star C++ badge</em><a class="cert-link" href="https://www.hackerrank.com/profile/vatsarishika2005" target="_blank" rel="noopener">View profile &#8599;</a></li>
     </ul></div></li>
   </ol>
 </section>
@@ -337,6 +340,7 @@ html.has-cursor dialog,html.has-cursor dialog *{cursor:auto!important}html.has-c
 </footer>
 
 <dialog id="certDlg" aria-label="Internship certificate"><div class="case-in"><button class="close" id="certClose" type="button">Close</button><p class="cert-cap">EssProM Academy &middot; Technology domain: AI-based Application Development &middot; Issued 10 October 2026</p><img class="cert-full" src="assets/essprom-certificate.jpg" alt="EssProM Academy internship certificate for Rishika Vatsa"><div class="actions" style="margin-top:16px"><a class="btn" href="assets/EssProm_Internship_Certificate.pdf" target="_blank" rel="noopener">Open PDF</a></div></div></dialog>
+<dialog id="credDlg" aria-label="Certificate"><div class="case-in"><button class="close" id="credClose" type="button">Close</button><p class="cert-cap" id="credCap"></p><img class="cert-full" id="credImg" src="" alt=""></div></dialog>
 <dialog id="case" aria-labelledby="caseTitle"><div class="case-in" id="caseBody"></div></dialog>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -601,5 +605,64 @@ ${prop}${hand}</svg>`;
   d.addEventListener('close', () => document.body.style.overflow = '');
 })();
 </script>
+<script>
+(() => {
+  const d = document.getElementById('credDlg'), img = document.getElementById('credImg'), cap = document.getElementById('credCap');
+  document.querySelectorAll('.cert-link[data-src]').forEach(b => b.addEventListener('click', () => {
+    img.src = b.dataset.src; img.alt = b.dataset.cap; cap.textContent = b.dataset.cap;
+    d.showModal(); document.body.style.overflow = 'hidden';
+  }));
+  document.getElementById('credClose').addEventListener('click', () => d.close());
+  d.addEventListener('click', e => { if (e.target === d) d.close(); });
+  d.addEventListener('close', () => document.body.style.overflow = '');
+})();
+</script>
 </body>
 </html>
+<style id="mobile-friendly-overrides">
+/* Mobile refinements: preserve the original visual style while preventing avatar/heading overlap. */
+@media (max-width: 800px) {
+  .hero {
+    min-height: 100svh;
+    padding-top: 220px;
+    padding-bottom: 32px;
+  }
+  .hero-av-wrap {
+    top: 88px;
+    right: var(--pad);
+    width: clamp(92px, 28vw, 136px);
+  }
+  .hero-av-wrap::before { inset: -7px; }
+  .hero .split {
+    font-size: clamp(2.45rem, 10.2vw, 5rem);
+    overflow-wrap: anywhere;
+  }
+  .hero .line { max-width: 100%; }
+  .hero-foot { gap: 22px; margin-top: 30px; }
+  .hero-foot p { max-width: 100%; }
+  .actions { width: 100%; gap: 10px; }
+  .actions .btn { padding: 12px 18px; }
+  .proj { padding-top: 28px; padding-bottom: 28px; }
+  .proj-vis { min-height: 220px; }
+  .skill-grid { grid-template-columns: 1fr; }
+  .timeline li { gap: 8px; }
+  .cert-card { flex-basis: min(190px, 70vw); }
+  .links { gap: 16px 22px; }
+  .totop { margin-left: 0; }
+}
+@media (max-width: 420px) {
+  :root { --pad: 20px; }
+  .nav { padding-top: 14px; padding-bottom: 14px; }
+  .nav-resume { font-size: .85rem; }
+  .menu-btn { padding: 5px 11px; font-size: .9rem; }
+  .hero { padding-top: 205px; }
+  .hero-av-wrap { top: 78px; width: 100px; }
+  .hero .split { font-size: clamp(2.2rem, 10.3vw, 2.75rem); }
+  .hero-foot .btn { font-size: .88rem; padding: 11px 14px; }
+  .proj-vis { min-height: 190px; }
+  .proj-vis .big-n { font-size: clamp(5rem, 22vw, 7rem); }
+  .case-in { padding: 22px; }
+  dialog { width: 96vw; max-height: 92svh; overflow-y: auto; }
+  .form { gap: 18px; }
+}
+</style>
